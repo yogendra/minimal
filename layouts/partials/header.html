@@ -1,56 +1,37 @@
-<!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
+<nav class="navbar navbar-default navbar-fixed-top">
 
-    <head>
+  <div class="container">
 
-        <title>{{ .Title }}</title>
+    <div class="navbar-header">
 
-        {{ partial "css" . }} {{ partial "js" . }} {{ .Hugo.Generator }}
+      <a class="navbar-brand visible-xs" href="#">{{ .Title }}</a>
 
-        <meta charset="utf-8">
+      <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </div>
 
-    </head>
+    <div class="collapse navbar-collapse">
 
-    <body>
+      {{ if .Site.Menus.main }}
+      <ul class="nav navbar-nav">
+        {{ range sort .Site.Menus.main }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+      {{ end }} {{ if .Site.Menus.icon }}
+      <ul class="nav navbar-nav navbar-right">
+        {{ range sort .Site.Menus.icon }}
+        <li class="navbar-icon"><a href="{{ .URL }}"><i class="fa fa-{{ .Name }}"></i></a></li>
+        {{ end }}
+      </ul>
+      {{ end }}
 
-        <nav class="navbar navbar-default navbar-fixed-top">
+    </div>
 
-            <div class="container">
+  </div>
 
-                <div class="navbar-header">
-
-                    <a class="navbar-brand visible-xs" href="#">{{ .Title }}</a>
-
-                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                </div>
-
-                <div class="collapse navbar-collapse">
-
-                    {{ if .Site.Menus.main }}
-                        <ul class="nav navbar-nav">
-                            {{ range sort .Site.Menus.main }}
-                                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-                            {{ end }}
-                        </ul>
-                    {{ end }}
-
-                    {{ if .Site.Menus.icon }}
-                        <ul class="nav navbar-nav navbar-right">
-                            {{ range sort .Site.Menus.icon }}
-                                <li class="navbar-icon"><a href="{{ .URL }}"><i class="fa fa-{{ .Name }}"></i></a></li>
-                            {{ end }}
-                        </ul>
-                    {{ end }}
-
-                </div>
-
-            </div>
-
-        </nav>
+</nav>

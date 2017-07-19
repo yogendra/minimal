@@ -1,22 +1,31 @@
-{{ partial "header" . }}
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
 
-<main>
+<head>
+  {{ partial "html-head" . }}
+</head>
+
+<body>
+  {{ partial "header" . }}
+
+  <main>
 
     {{ partial "list-item" . }}
 
-    <br> <div class="text-justify">{{ .Content }}</div>
+    <br>
+    <div class="text-justify">{{ .Content }}</div>
 
     <!-- related posts with the same tags -->
     {{ $related := first 3 (where (where (where .Site.Pages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
-
     {{ if $related }}
 
-        <h4 class="page-header">Related</h4>
+    <h4 class="page-header">Related</h4>
 
-        {{ range $related }} {{ partial "list-item" . }} {{ end }}
+    {{ range $related }} {{ partial "list-item" . }} {{ end }} {{ end }}
 
-    {{ end }}
+  </main>
 
-</main>
+  {{ partial "footer.html" . }}
+</body>
 
-{{ partial "footer.html" . }}
+</html>

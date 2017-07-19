@@ -1,31 +1,37 @@
-{{ partial "header" . }}
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
 
-<main>
+<head>
+  {{ partial "html-head" . }}
+</head>
+
+<body>
+
+  {{ partial "header" . }}
+
+  <main>
 
     <h2>{{ .Title }}</h2>
 
     {{ range (.Paginator 5).Pages }} {{ partial "list-item" . }} {{ end }}
 
-</main>
+  </main>
 
-{{ if or .Paginator.HasPrev .Paginator.HasNext }}
+  {{ if or .Paginator.HasPrev .Paginator.HasNext }}
 
-    <div class="pages">
+  <div class="pages">
 
-        {{ if .Paginator.HasPrev }}
-            <a class="icon pages-icon" href="{{ .Paginator.Prev.URL }}" rel="prev">
+    {{ if .Paginator.HasPrev }}
+    <a class="icon pages-icon" href="{{ .Paginator.Prev.URL }}" rel="prev">
                 <i class="fa fa-arrow-left"></i>
-            </a>
-        {{ end }}
-
-        {{ if .Paginator.HasNext }}
-            <a class="icon pages-icon" href="{{ .Paginator.Next.URL }}" rel="next">
+            </a> {{ end }} {{ if .Paginator.HasNext }}
+    <a class="icon pages-icon" href="{{ .Paginator.Next.URL }}" rel="next">
                 <i class="fa fa-arrow-right"></i>
-            </a>
-        {{ end }}
+            </a> {{ end }}
 
-    </div>
+  </div>
 
-{{ end }}
+  {{ end }} {{ partial "footer" . }}
+</body>
 
-{{ partial "footer" . }}
+</html>

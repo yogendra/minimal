@@ -1,15 +1,27 @@
-{{ partial "header" . }}
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
 
-<main>
+<head>
+  {{ partial "html-head" . }}
+</head>
+
+<body>
+  {{ partial "header" . }}
+
+  <main>
 
     <div class="intro">
 
-        <h1>{{ ":ghost:" | emojify }}</h1>
+      <h1>{{ ":ghost:" | emojify }}</h1>
 
-        <h2>404 Page not found</h2>
+      <h2>404 Page not found</h2>
 
     </div>
 
-</main>
+  </main>
 
-{{ partial "footer" . }}
+  {{ partial "footer" . }}
+
+</body>
+
+</html>
